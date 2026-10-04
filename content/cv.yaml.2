@@ -1,0 +1,243 @@
+# ---------------------------------------------------------------------------
+# CV content. Edit this file, then run `python build.py`.
+# Lines marked VERIFY were inferred from public sources and need your check.
+# Text fields accept inline Markdown (*italic*, **bold**, [links](url)).
+# ---------------------------------------------------------------------------
+
+site:
+  title: "Christopher Lee-Messer, MD, PhD"
+  description: "Physician-scientist treating children with epilepsy and neurodevelopmental disorders and doing research on models for brain signals and the geometry of learned representations."
+  url: "https://cleemesser.github.io"          # VERIFY: your GitHub Pages URL
+  updated: "September 2026"
+
+person:
+  name: "Christopher Lee-Messer"
+  postnominals: "MD, PhD"
+  role: "Clinical Associate Professor of Neurology (Child Neurology & Epilepsy), Stanford University"
+  email: "chris@lee-messer.net"
+  links:
+    - { label: "Google Scholar", url: "https://scholar.google.com/citations?user=zEAw56MAAAAJ" }
+    - { label: "ORCID", url: "https://orcid.org/0000-0002-2938-6184" }
+    - { label: "OpenReview", url: "https://openreview.net/profile?id=~Christopher_Lee-Messer1" }
+    - { label: "Stanford profile", url: "https://profiles.stanford.edu/christopher-lee-messer" }
+    - { label: "GitHub", url: "https://github.com/cleemesser" }
+
+summary: >
+  Neurologist-scientist studying the science of intelligence and the pathology of abnormal brain dynamics. Trained in physics, developmental and computational neuroscience, molecular biology, optogenic gene therapies, and clinical neurophysiology. Basic research studying the topology and metric geometry of learned latent spaces to better understand how neural networks function and as a route to safer, more
+  interpretable models. Applied work building large medical databases of EEG, charts and brain MRI in order to build machine learning models for medical diagnosis. I am interested in research roles and collaborations on world models and non-linguistic intelligence, particularly where they meet real clinical data.
+
+interests:
+  - title: "World models of physiological signals"
+    text: >
+      EEG represents a continuous, high-dimensional, non-linguistic record of a
+      dynamical system.  Modeling this dynamical system is fundamental to
+      understanding the brain's function and its failure modes in the form of
+      seizures and epilepsy. We are building dynamical systems models of the
+      brain to diagnose epileptic brain circuits and identify areas for
+      treatment. Predicting its future in latent representation space is a
+      natural testbed for joint-embedding predictive architectures; our
+      self-supervised EEG pre-training (ICLR 2022) have long used next-window
+      prediction as its objective. We hypothesize that embedded spaces
+      architectures will form efficient, non-linear sketches of the underlying
+      dynamics that can surpass linear-system approaches.
+  - title: "Latent space geometry for safety, introspection, and self-modeling"
+    text: >
+      TRUST-LAPSE (Bhaskhar, 2024) showed that understanding the underlying
+      metric/quasi-metric structure in a neural network latent space allowed
+      idenification of errors as they propagated through a neural network.
+      trusted on. This structure provides a readable signal of the model's own
+      competence. Current work asks which topological, geometric, and dynamical
+      properties of a representation (metric, curvature, information geometry,
+      trajectories through latent space) mark the edge of that competence, and
+      how to measure them in deployment. The same measurements are a route to
+      introspection: they show what a network represents and how that structure
+      changes as it learns and runs. The next step is a self-introspective
+      system, in which one part of a model takes another part's latent space as
+      its input and learns to predict it.
+  - title: "Neurodevelopment as inductive bias"
+    text: >
+      Before the eyes open, spontaneous retinal waves organize visual circuits through
+      Hebbian learning. Activity-dependent development is a biological precedent for
+      self-supervised pre-training on internally generated data, and a source of ideas
+      for how intelligence arises without language.
+  - title: "From charts and signals to clinical tools"
+    text: >
+      Clinical workflow notes, reports, and EEG annotations are abundant, noisy supervision.
+      I have used weak supervision to train seizure detectors at scale, and I want to turn
+      EEG, MRI, and the medical record into models clinicians and patients can rely on.
+
+skills:
+  - area: "Machine learning"
+    items: "Self-supervised and predictive representation learning; graph neural networks; structured state-space models; weak supervision and data programming; out-of-distribution detection and model monitoring; Bayesian modeling."
+  - area: "Mathematics"
+    items: "Differential geometry, Lie theory, geometric and multilinear algebra; information geometry; probability and statistics. Undergraduate training in physics."
+  - area: "Neural data"
+    items: "Clinical EEG and long-term monitoring (board-certified in epilepsy); EEG source modeling; MRI and NIfTI pipelines; BIDS data standards (iEEG-BIDS co-author)."
+  - area: "Clinical domain"
+    items: "Pediatric epilepsy and developmental and epileptic encephalopathies, including SYNGAP1-related disorder and DEE-SWAS; sleep spindle biomarkers; clinical trial and outcome-measure design."
+  - area: "Experimental neuroscience"
+    items: "In vivo and in vitro electrophysiology, molecular biology, and developmental neuroscience with a focus on activity-dependent development."
+  - area: "Software"
+    items: "Python scientific and deep learning stack; research tooling for EEG/MRI data, chart review, harmonization. Creator of long-running clinical web sites and mobile apps."
+  - area: Programming
+    items: "Python (e.g., pytorch,jax, tensorly,numpy,polars,duckdb), C, C++. Acquaitance with: R, Rust, javascript, Lean4, Lisp, Mojo, CUDA. Past experiences:  Mathematica, Matlab, Theano, Ocaml, haskall, 6502 and x86 assembly, PARIS (Connection Machine)"
+
+positions:
+  - when: "Present"
+    what: "Clinical Associate Professor, Pediatric Neurology; Clinical Associate Professor (by courtesy), Pediatrics"
+    where: "Stanford University"
+  - when: "2012–2021"
+    what: "Clinical Assistant Professor, Neurology"
+    where: "Stanford University"
+  - when: "2011–2012"
+    what: "Instructor, Neurology"
+    where: "Stanford University"
+  - when: "Current"
+    what: "Member, Wu Tsai Neurosciences Institute; Member, Maternal & Child Health Research Institute"
+    where: "Stanford University"
+
+education:
+  - when: "2011"
+    what: "Fellowships in Clinical Neurophysiology and Pediatric Epilepsy"
+    where: "Stanford University Medical Center"
+  - when: "2009"
+    what: "Residency in Neurology (Child Neurology); Chief Resident 2007–2008"
+    where: "Stanford University Medical Center"
+  - when: "2005"
+    what: "Internship"
+    where: "University of California, San Francisco"
+  - when: "2004"
+    what: "MD"
+    where: "Washington University School of Medicine"
+  - when: "2001"
+    what: "PhD, Neuroscience (advisor: Rachel O. L. Wong)"
+    where: "Washington University in St. Louis"
+  - when: "1990"
+    what: "AB, Physics"
+    where: "Harvard University"
+
+honors:
+  - "CureSyngap1 research award, *An open-label, decentralized trial of nortriptyline for SYNGAP1-related disorder* (PI, 2026–2027)"
+  - "NIH/NINDS K12 Neurological Sciences Academic Development Award (2008–2011)"
+  - "R. S. Fisher Award for Teaching, Stanford Department of Neurology (2008)"
+  - "Board certification: Neurology with Special Qualification in Child Neurology; Epilepsy (2016)"
+
+# ---------------------------------------------------------------------------
+# Publications. `me` is matched against authors and set in bold.
+# Groups render in the order listed. Add `arxiv`, `doi`, `url`, `code` as available.
+# ---------------------------------------------------------------------------
+me: ["Lee-Messer C", "Lee-Messer CW", "Lee CW"]
+
+publications:
+  - group: "Current work"
+    items:
+      - title: "Latent-space topology, geometry, and dynamics: from competence monitoring to self-introspection"
+        authors: ["Lee-Messer C"]
+        venue: "In preparation"
+        year: 2026
+        note: >
+          TRUST-LAPSE used distances in latent space to flag inputs a model should not be
+          trusted on. This work extends that idea from competence monitoring to model
+          introspection, and then to self-introspective systems: one part of a model takes
+          another part's latent space as its input and learns to predict it, in the manner
+          of a JEPA-style world model.
+      - title: "DCTOP: a decentralized clinical trial open platform for rare pediatric neurological disorders"
+        authors: ["Lee-Messer C"]
+        venue: "Platform in development"
+        year: 2026
+        note: >
+          A mobile app, investigator web portal, and server that let families take part
+          in a trial from home, with their local neurologist and telehealth visits in
+          place of travel to a trial center. The analysis side uses simulation-based
+          Bayesian designs suited to small rare-disease trials. First use: an
+          investigator-initiated Phase IIa safety and tolerability study of nortriptyline
+          in SYNGAP1-related disorder, funded by CureSyngap1.
+
+  - group: "Machine learning"
+    items:
+      - title: "Towards trustworthy seizure onset detection using workflow notes"
+        authors: ["Saab K", "Tang S", "Taha M", "Lee-Messer C", "Ré C", "Rubin DL"]
+        venue: "npj Digital Medicine 7:42"
+        year: 2024
+        doi: "10.1038/s41746-024-01008-9"
+      - title: "An explainable and actionable mistrust scoring framework for model monitoring (TRUST-LAPSE)"
+        authors: ["Bhaskhar N", "Rubin DL", "Lee-Messer C"]
+        venue: "IEEE Transactions on Artificial Intelligence 5(4):1473–1485"
+        year: 2024
+        arxiv: "2207.11290"
+      - title: "Modeling multivariate biosignals with graph neural networks and structured state space models"
+        authors: ["Tang S", "Dunnmon JA", "Qu L", "Saab KK", "Baykaner T", "Lee-Messer C", "Rubin DL"]
+        venue: "Conference on Health, Inference, and Learning (CHIL), PMLR 209:50–71"
+        year: 2023
+      - title: "ATCON: Attention consistency for vision models"
+        authors: ["Mirzazadeh A", "Dubost F", "Pike M", "Maniar K", "Zuo M", "Lee-Messer C", "Rubin DL"]
+        venue: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)"
+        year: 2023
+        doi: "10.1109/WACV56688.2023.00192"
+      - title: "Semi-supervised learning for sparsely-labeled sequential data: application to healthcare video processing"
+        authors: ["Dubost F", "Hong E", "Tang S", "Bhaskhar N", "Lee-Messer C", "Rubin DL"]
+        venue: "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)"
+        year: 2023
+        doi: "10.1109/WACV56688.2023.00193"
+      - title: "Domino: Discovering systematic errors with cross-modal embeddings"
+        authors: ["Eyuboglu S", "Varma M", "Saab K", "Delbrouck J-B", "Lee-Messer C", "Dunnmon J", "Zou J", "Ré C"]
+        venue: "International Conference on Learning Representations (ICLR)"
+        year: 2022
+        arxiv: "2203.14960"
+      - title: "Self-supervised graph neural networks for improved electroencephalographic seizure analysis"
+        authors: ["Tang S", "Dunnmon JA", "Saab K", "Zhang X", "Huang Q", "Dubost F", "Rubin DL", "Lee-Messer C"]
+        venue: "International Conference on Learning Representations (ICLR)"
+        year: 2022
+        arxiv: "2104.08336"
+      - title: "Cross-modal data programming enables rapid medical machine learning"
+        authors: ["Dunnmon JA", "Ratner AJ", "Saab K", "Khandwala N", "Markert M", "Sagreiya H", "Goldman R", "Lee-Messer C", "Lungren MP", "Rubin DL", "Ré C"]
+        venue: "Patterns 1(2):100019"
+        year: 2020
+        doi: "10.1016/j.patter.2020.100019"
+      - title: "Weak supervision as an efficient approach for automated seizure detection in electroencephalography"
+        authors: ["Saab K", "Dunnmon J", "Ré C", "Rubin D", "Lee-Messer C"]
+        venue: "npj Digital Medicine 3:12"
+        year: 2020
+        doi: "10.1038/s41746-020-0264-0"
+
+  - group: "Data resources and editorials"
+    items:
+      - title: "Harvard Electroencephalography Database: a comprehensive clinical electroencephalographic resource from four Boston hospitals"
+        authors: ["Sun C", "Jing J", "Turley N", "Alcott C", "Kang W-Y", "…", "Lee-Messer C", "…"]   # VERIFY author list
+        venue: "Epilepsia"
+        year: 2025
+      - title: "Editorial: Machine learning in neuroimaging"
+        authors: ["Federau C", "Scalzo F", "Lee-Messer CW", "Zaharchuk G"]
+        venue: "Frontiers in Neurology 12:778765"
+        year: 2021
+        doi: "10.3389/fneur.2021.778765"
+      - title: "iEEG-BIDS, extending the Brain Imaging Data Structure specification to human intracranial electrophysiology"
+        authors: ["Holdgraf C", "Appelhoff S", "…", "Lee-Messer C", "…", "Hermes D"]
+        venue: "Scientific Data 6:102"
+        year: 2019
+        doi: "10.1038/s41597-019-0105-7"
+
+  - group: "Computational and developmental neuroscience"
+    items:
+      - title: "MicroRNA-mediated conversion of human fibroblasts to neurons"
+        authors: ["Yoo AS", "Sun AX", "Li L", "Shcheglovitov A", "Portmann T", "Li Y", "Lee-Messer C", "Dolmetsch RE", "Tsien RW", "Crabtree GR"]
+        venue: "Nature 476:228–231"
+        year: 2011
+        doi: "10.1038/nature10323"
+      - title: "Segregation of ON and OFF retinogeniculate connectivity directed by patterned spontaneous activity"
+        authors: ["Lee CW", "Eglen SJ", "Wong ROL"]
+        venue: "Journal of Neurophysiology 88(5):2311–2321"
+        year: 2002
+        doi: "10.1152/jn.00372.2002"
+      - title: "A nonlinear Hebbian network that learns to detect disparity in random-dot stereograms"
+        authors: ["Lee CW", "Olshausen BA"]
+        venue: "Neural Computation 8(3):545–566"
+        year: 1996
+        url: "https://pubmed.ncbi.nlm.nih.gov/8868567/"
+      - title: "Computerized mappings of the cerebral cortex: a multiresolution flattening method and a surface-based coordinate system"
+        authors: ["Drury HA", "Van Essen DC", "Anderson CH", "Lee CW", "Coogan TA", "Lewis JW"]
+        venue: "Journal of Cognitive Neuroscience 8(1):1–28"
+        year: 1996
+        url: "https://pubmed.ncbi.nlm.nih.gov/11539144/"
+
+more_publications: "Full list, including clinical epilepsy research, on [Google Scholar](https://scholar.google.com/citations?user=zEAw56MAAAAJ) and [ORCID](https://orcid.org/0000-0002-2938-6184)."
