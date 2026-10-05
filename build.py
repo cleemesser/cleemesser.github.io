@@ -3,6 +3,7 @@
 
     python build.py            # writes _site/
     python build.py --serve    # build, then serve on http://localhost:8000
+    python build.py --pdf      # also typeset _site/cv.pdf with pdflatex
 """
 # %%
 from __future__ import annotations
@@ -13,7 +14,9 @@ import http.server
 import json
 import math
 import random
+import re
 import shutil
+import subprocess
 from pathlib import Path
 
 import markdown
@@ -46,6 +49,56 @@ def author_list(authors: list[str], me: list[str]) -> Markup:
         key = a.replace(".", "").strip()
         parts.append(f"<strong>{escape(a)}</strong>" if key in mine else str(escape(a)))
     return Markup(", ".join(parts))
+
+
+# --------------------------------------------------------------------------
+# LaTeX filters. A TexStr is already TeX; anything else is escaped on output.
+# --------------------------------------------------------------------------
+class TexStr(str):
+    pass
+
+
+TEX_SPECIAL = {
+    "\\": r"\textbackslash{}", "&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#",
+    "_": r"\_", "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}", "^": r"\textasciicircum{}",
+}
+
+
+def tex_escape(text) -> str:
+    return "".join(TEX_SPECIAL.get(c, c) for c in str(text))
+
+
+def tex_url(url: str) -> TexStr:
+    """Escape only what breaks a URL argument to \\href or \\nolinkurl."""
+    return TexStr(str(url).replace("\\", "/").replace("%", r"\%").replace("#", r"\#"))
+
+
+def _emph_tex(text: str) -> str:
+    s = tex_escape(text)
+    s = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", s)
+    return re.sub(r"\*(.+?)\*", r"\\emph{\1}", s)
+
+
+def md_tex(text: str) -> TexStr:
+    """Inline Markdown (links, **bold**, *italic*) to LaTeX."""
+    s = " ".join(str(text or "").split())
+    out, pos = [], 0
+    for m in re.finditer(r"\[([^\]]+)\]\(([^)\s]+)\)", s):
+        out.append(_emph_tex(s[pos:m.start()]))
+        out.append(rf"\href{{{tex_url(m[2])}}}{{{_emph_tex(m[1])}}}")
+        pos = m.end()
+    out.append(_emph_tex(s[pos:]))
+    return TexStr("".join(out))
+
+
+def author_list_tex(authors: list[str], me: list[str]) -> TexStr:
+    mine = {m.replace(".", "").strip() for m in me}
+    parts = [
+        rf"\mbox{{\textbf{{{tex_escape(a)}}}}}" if a.replace(".", "").strip() in mine
+        else rf"\mbox{{{tex_escape(a)}}}"
+        for a in authors
+    ]
+    return TexStr(", ".join(parts))
 
 
 # --------------------------------------------------------------------------
@@ -143,6 +196,35 @@ def build() -> None:
     print(f"Built {OUT/'index.html'} ({n} publications)")
 
 
+def build_pdf() -> None:
+    """Render templates/cv.tex and typeset it to _site/cv.pdf. Run after build()."""
+    cv = yaml.load((ROOT / "content" / "cv.yaml").read_text(encoding="utf-8"))
+    env = Environment(
+        loader=FileSystemLoader(ROOT / "templates"),
+        block_start_string="((*", block_end_string="*))",
+        variable_start_string="(((", variable_end_string=")))",
+        comment_start_string="((#", comment_end_string="#))",
+        trim_blocks=True,
+        lstrip_blocks=True,
+        finalize=lambda v: v if isinstance(v, TexStr) else tex_escape("" if v is None else v),
+    )
+    env.filters["md"] = md_tex
+    env.filters["url"] = tex_url
+    env.filters["authors"] = lambda a: author_list_tex(a, cv.get("me", []))
+
+    tex = OUT / "cv.tex"
+    tex.write_text(env.get_template("cv.tex").render(cv=cv), encoding="utf-8")
+    run = subprocess.run(
+        ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name],
+        cwd=OUT, capture_output=True, text=True,
+    )
+    if run.returncode != 0:
+        raise SystemExit(f"pdflatex failed; see {OUT/'cv.log'}\n" + run.stdout[-2000:])
+    for ext in ("aux", "log", "out"):
+        (OUT / f"cv.{ext}").unlink(missing_ok=True)
+    print(f"Built {OUT/'cv.pdf'}")
+
+
 def serve(port: int = 8000) -> None:
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(OUT))
     print(f"Serving on http://localhost:{port}  (Ctrl-C to stop)")
@@ -153,7 +235,10 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--serve", action="store_true", help="serve _site after building")
     ap.add_argument("--port", type=int, default=8000)
+    ap.add_argument("--pdf", action="store_true", help="also typeset _site/cv.pdf (needs pdflatex)")
     args = ap.parse_args()
     build()
+    if args.pdf:
+        build_pdf()
     if args.serve:
         serve(args.port)

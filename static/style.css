@@ -7,7 +7,7 @@
   --trace:  #8C96A1;
   --accent: #2E5A87;
   --measure: 42rem;
-  --gutter: 4rem;
+  --gutter: 7rem;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -92,19 +92,28 @@ h3 { font-size: 1rem; font-weight: 600; margin: 0; }
 .pubgroup { margin: 1.75rem 0 0.6rem; color: var(--muted); font-weight: 400; font-style: italic; }
 .pubgroup:first-of-type { margin-top: 0; }
 
-/* Year hangs in the left margin; the reading edge stays straight. */
 .pubs, .timeline { list-style: none; margin: 0; padding: 0; }
-.pub, .timeline li { position: relative; margin-bottom: 0.8rem; }
+/* Date hangs in the left margin as a real grid column, so long ranges
+   ("2012–2021", "Present") stay on one line and can never overlap the next row. */
+.pub, .timeline li {
+  display: grid;
+  grid-template-columns: var(--gutter) minmax(0, 1fr);
+  margin: 0 0 0.8rem calc(-1 * var(--gutter));
+}
 .year {
-  position: absolute; left: calc(-1 * var(--gutter)); width: calc(var(--gutter) - 1rem);
-  text-align: right; color: var(--muted); font-variant-numeric: oldstyle-nums tabular-nums;
+  padding-right: 1rem;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--muted);
+  font-variant-numeric: oldstyle-nums tabular-nums;
 }
 .ptitle { font-weight: 600; }
 .authors, .venue { color: var(--ink); }
 .venue { font-style: italic; }
 .authors strong { font-weight: 600; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
 .pub a { margin-left: 0.4rem; font-size: 0.92rem; }
-.pub--placeholder { color: var(--muted); border-left: 2px dashed var(--grid); padding-left: 0.75rem; }
+.pub--placeholder { color: var(--muted); }
+.pub--placeholder .body { border-left: 2px dashed var(--grid); padding-left: 0.75rem; }
 .where { color: var(--muted); }
 .note { color: var(--muted); font-size: 0.95rem; margin: 0 0 0.75rem; }
 .pnote { display: block; color: var(--muted); font-size: 0.95rem; margin-top: 0.25rem; }
@@ -119,14 +128,15 @@ h3 { font-size: 1rem; font-weight: 600; margin: 0; }
   :root { --gutter: 0rem; }
   .page { padding: 2.5rem 1.25rem 4rem; }
   .montage-wrap { margin-left: 0; }
-  .year { position: static; display: block; width: auto; text-align: left; font-size: 0.9rem; }
+  .pub, .timeline li { display: block; margin-left: 0; }
+  .year { display: block; text-align: left; padding: 0; font-size: 0.9rem; }
   .skills { grid-template-columns: 1fr; gap: 0.15rem; }
   .skills dd { margin-bottom: 0.6rem; }
 }
 
 /* ------------------------------------------------------------------- print */
 @media print {
-  :root { --paper: #fff; --ink: #000; --muted: #444; --accent: #000; --gutter: 3rem; }
+  :root { --paper: #fff; --ink: #000; --muted: #444; --accent: #000; --gutter: 7rem; }
   html { font-size: 9.5pt; }
   .page { max-width: none; padding: 0 0 0 var(--gutter); }
   .montage-wrap, .foot a { display: none; }
