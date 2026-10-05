@@ -1,13 +1,21 @@
 # CV site
 
-A one-page academic CV generated from a single YAML file by a ~150-line Python script,
-deployed to GitHub Pages by GitHub Actions.
+A short landing page and a full CV (HTML and LaTeX PDF), generated from a single YAML
+file by a Python script and deployed to GitHub Pages by GitHub Actions.
+
+```
+/                                    landing page: links, one-paragraph summary, skills
+/cv/                                 full CV (not linked from the landing page)
+/cv/Christopher-Lee-Messer-CV.pdf    full CV typeset with pdflatex
+```
 
 ```
 content/cv.yaml        all content (edit this)
-templates/index.html   Jinja2 page template
+templates/landing.html landing page template
+templates/cv.html      full CV page template
+templates/cv.tex       LaTeX template for the PDF
 static/style.css       styles, including dark mode and print
-build.py               generator: YAML -> _site/index.html
+build.py               generator: YAML -> _site/
 fetch_orcid.py         lists ORCID works not yet in cv.yaml
 .github/workflows/     build + deploy on every push to main
 ```
@@ -19,6 +27,8 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python build.py --serve          # http://localhost:8000
 ```
+
+The build runs `pdflatex`. Use `--no-pdf` to skip it.
 
 ## Publish on GitHub Pages
 
@@ -35,8 +45,9 @@ not yet in `cv.yaml`. Paste the ones you want into the right group and add autho
 
 ## PDF
 
-Open the site and print (or use the footer link). The print stylesheet drops the header
-figure and placeholder entries and shows link URLs.
+The build typesets `templates/cv.tex` into `_site/cv/Christopher-Lee-Messer-CV.pdf`.
+The CV page links to it. Placeholder entries are left out, and links print as
+short typeable URLs.
 
 ## Before publishing
 

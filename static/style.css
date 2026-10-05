@@ -56,7 +56,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-
   margin: 0;
 }
 .masthead .name { white-space: nowrap; }
-.masthead .post { font-weight: 400; color: var(--muted); font-size: 0.55em; letter-spacing: 0; }
+.masthead .post { white-space: nowrap; font-weight: 400; color: var(--muted); font-size: 0.55em; letter-spacing: 0; }
 .role { margin: 0.5rem 0 0; color: var(--muted); font-size: 1.05rem; }
 
 .montage-wrap { margin: 1.75rem 0 1.25rem calc(-1 * var(--gutter)); }
@@ -127,6 +127,8 @@ h3 { font-size: 1rem; font-weight: 600; margin: 0; }
 @media (max-width: 40rem) {
   :root { --gutter: 0rem; }
   .page { padding: 2.5rem 1.25rem 4rem; }
+  /* the unbreakable name must fit a 320px screen */
+  .masthead h1 { font-size: clamp(1.5rem, 8.2vw, 2.1rem); }
   .montage-wrap { margin-left: 0; }
   .pub, .timeline li { display: block; margin-left: 0; }
   .year { display: block; text-align: left; padding: 0; font-size: 0.9rem; }

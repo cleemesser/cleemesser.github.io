@@ -11,19 +11,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{ root }}style.css">
   <script type="application/ld+json">{{ json_ld }}</script>
 </head>
 <body>
 <main class="page">
 
   <header class="masthead">
-    <h1><span class="name">{{ cv.person.name }}</span><span class="post">, {{ cv.person.postnominals }}</span></h1>
+    <h1><span class="name">{{ cv.person.name }}</span><span class="post">,</span> <span class="post">{{ cv.person.postnominals }}</span></h1>
     <p class="role">{{ cv.person.role }}</p>
     {% if montage %}<figure class="montage-wrap">{{ montage }}</figure>{% endif %}
     <ul class="links">
       {% if cv.person.email %}<li><a href="mailto:{{ cv.person.email }}">{{ cv.person.email }}</a></li>{% endif %}
       {% for l in cv.person.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+      <li><a href="{{ pdf_name }}">PDF</a></li>
     </ul>
   </header>
 
@@ -102,7 +103,7 @@
   </section>
 
   <footer class="foot">
-    <p>Updated {{ cv.site.updated }}. <a href="#" onclick="window.print();return false;">Print or save as PDF</a></p>
+    <p>Updated {{ cv.site.updated }}. <a href="{{ pdf_name }}">Download the PDF</a></p>
   </footer>
 </main>
 </body>

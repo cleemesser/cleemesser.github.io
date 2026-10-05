@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Build a one-page academic CV site from content/cv.yaml.
+"""Build an academic site from content/cv.yaml.
+
+    _site/index.html     short landing page (summary, skills, links)
+    _site/cv/index.html  full CV; not linked from the landing page
+    _site/cv/<PDF_NAME>  full CV typeset with pdflatex from templates/cv.tex
 
     python build.py            # writes _site/
     python build.py --serve    # build, then serve on http://localhost:8000
-    python build.py --pdf      # also typeset _site/cv.pdf with pdflatex
+    python build.py --no-pdf   # skip the PDF (no pdflatex needed)
 """
 # %%
 from __future__ import annotations
@@ -29,6 +33,8 @@ from markupsafe import Markup, escape
 yaml = YAML()
 ROOT = Path(__file__).parent
 OUT = ROOT / "_site"
+CV_DIR = OUT / "cv"  # the full CV lives at <site>/cv/
+PDF_NAME = "Christopher-Lee-Messer-CV.pdf"
 # %%
 
 # --------------------------------------------------------------------------
@@ -202,19 +208,26 @@ def build() -> None:
     shutil.copytree(ROOT / "static", OUT)
     (OUT / ".nojekyll").touch()  # tell GitHub Pages to serve files as-is
 
-    html = env.get_template("index.html").render(
+    landing = env.get_template("landing.html").render(cv=cv, root="", json_ld=json_ld(cv))
+    (OUT / "index.html").write_text(landing, encoding="utf-8")
+    print(f"Built {OUT/'index.html'}")
+
+    CV_DIR.mkdir()
+    html = env.get_template("cv.html").render(
         cv=cv,
+        root="../",
+        pdf_name=PDF_NAME,
         # montage=eeg_montage(), # disable
         json_ld=json_ld(cv)
     )
-    (OUT / "index.html").write_text(html, encoding="utf-8")
+    (CV_DIR / "index.html").write_text(html, encoding="utf-8")
 
     n = sum(len(g["items"]) for g in cv.get("publications", []))
-    print(f"Built {OUT/'index.html'} ({n} publications)")
+    print(f"Built {CV_DIR/'index.html'} ({n} publications)")
 
 
 def build_pdf() -> None:
-    """Render templates/cv.tex and typeset it to _site/cv.pdf. Run after build()."""
+    """Render templates/cv.tex and typeset it to _site/cv/<PDF_NAME>. Run after build()."""
     cv = yaml.load((ROOT / "content" / "cv.yaml").read_text(encoding="utf-8"))
     env = Environment(
         loader=FileSystemLoader(ROOT / "templates"),
@@ -230,17 +243,18 @@ def build_pdf() -> None:
     env.filters["print_url"] = print_url
     env.filters["authors"] = lambda a: author_list_tex(a, cv.get("me", []))
 
-    tex = OUT / "cv.tex"
+    job = Path(PDF_NAME).stem
+    tex = CV_DIR / f"{job}.tex"
     tex.write_text(env.get_template("cv.tex").render(cv=cv), encoding="utf-8")
     run = subprocess.run(
         ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name],
-        cwd=OUT, capture_output=True, text=True,
+        cwd=CV_DIR, capture_output=True, text=True,
     )
     if run.returncode != 0:
-        raise SystemExit(f"pdflatex failed; see {OUT/'cv.log'}\n" + run.stdout[-2000:])
-    for ext in ("aux", "log", "out"):
-        (OUT / f"cv.{ext}").unlink(missing_ok=True)
-    print(f"Built {OUT/'cv.pdf'}")
+        raise SystemExit(f"pdflatex failed; see {CV_DIR/(job + '.log')}\n" + run.stdout[-2000:])
+    for ext in ("aux", "log", "out", "tex"):
+        (CV_DIR / f"{job}.{ext}").unlink(missing_ok=True)
+    print(f"Built {CV_DIR/PDF_NAME}")
 
 
 def serve(port: int = 8000) -> None:
@@ -253,10 +267,10 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--serve", action="store_true", help="serve _site after building")
     ap.add_argument("--port", type=int, default=8000)
-    ap.add_argument("--pdf", action="store_true", help="also typeset _site/cv.pdf (needs pdflatex)")
+    ap.add_argument("--no-pdf", action="store_true", help="skip typesetting the PDF (needs pdflatex)")
     args = ap.parse_args()
     build()
-    if args.pdf:
+    if not args.no_pdf:
         build_pdf()
     if args.serve:
         serve(args.port)
