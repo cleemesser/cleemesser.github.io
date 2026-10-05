@@ -101,7 +101,7 @@ skills:
   - area: "Software"
     items: "Python scientific and deep learning stack; research tooling for EEG/MRI data, chart review, harmonization. Creator of long-running clinical web sites and mobile apps."
   - area: Programming
-    items: "Python (e.g., pytorch, jax, tensorly, numpy, polars, duckdb), C, C++. Acquaitance with: R, Rust, javascript, Lean4, Lisp, Mojo, CUDA. Past experiences:  Mathematica, Matlab, Theano, Ocaml, haskall, 6502 and x86 assembly, PARIS (Connection Machine)"
+    items: "Python (e.g., pytorch, jax, tensorly, numpy, polars, duckdb), C, C++. Acquaintance with: R, Rust, javascript, Lean4, Lisp, Mojo, CUDA. Past experiences:  Mathematica, Matlab, Theano, Ocaml, haskall, 6502 and x86 assembly, PARIS (Connection Machine)"
 
 positions:
   - when: "Present"
@@ -151,6 +151,7 @@ me: ["Lee-Messer C", "Lee-Messer CW", "Lee CW"]
 
 publications:
   - group: "Current work"
+    items:
       - title: "DCTOP: a decentralized clinical trial open platform for rare pediatric neurological disorders"
         authors: ["Lee-Messer C"]
         venue: "Platform in development"
