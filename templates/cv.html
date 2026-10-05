@@ -81,7 +81,7 @@
     <h2>Appointments</h2>
     <ol class="timeline">
       {% for r in cv.positions %}
-      <li><span class="year">{{ r.when }}</span><span class="body">{{ r.what }}, <span class="where">{{ r.where }}</span></span></li>
+      <li><span class="year">{{ r.when }}</span><span class="body">{{ r.what | md }}, <span class="where">{{ r.where }}</span></span></li>
       {% endfor %}
     </ol>
   </section>
@@ -90,7 +90,7 @@
     <h2>Education and training</h2>
     <ol class="timeline">
       {% for r in cv.education %}
-      <li><span class="year">{{ r.when }}</span><span class="body">{{ r.what }}, <span class="where">{{ r.where }}</span></span></li>
+      <li><span class="year">{{ r.when }}</span><span class="body">{{ r.what | md }}, <span class="where">{{ r.where }}</span></span></li>
       {% endfor %}
     </ol>
   </section>

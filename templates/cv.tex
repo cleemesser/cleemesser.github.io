@@ -136,14 +136,14 @@
 \cvsection{Appointments}
 \begin{dated}
 ((* for r in cv.positions *))
-\item[((( r.when )))] ((( r.what ))), {\color{muted}\mbox{((( r.where )))}}
+\item[((( r.when )))] ((( r.what | md ))), {\color{muted}\mbox{((( r.where )))}}
 ((* endfor *))
 \end{dated}
 
 \cvsection{Education and training}
 \begin{dated}
 ((* for r in cv.education *))
-\item[((( r.when )))] ((( r.what ))), {\color{muted}\mbox{((( r.where )))}}
+\item[((( r.when )))] ((( r.what | md ))), {\color{muted}\mbox{((( r.where )))}}
 ((* endfor *))
 \end{dated}
 
