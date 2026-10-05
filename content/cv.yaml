@@ -30,13 +30,14 @@ summary: >
 landing:
   summary: >
     Neurologist-scientist working on the science of intelligence: how brains and
-    neural networks learn to model their world. My clinical research is focused on
-    the neuroscience and pathology of the synapse.  My computational research
+    computers can learn to model their world. My clinical research focuses on
+    the neuroscience and pathology of the synapse. My computational research
     covers models of EEG and other physiological signals; the topology and
-    geometry of learned latent spaces as a route to safer, self-monitoring
-    systems; weak supervision from clinical notes, EEG, and MRI to build
-    diagnostic tools at scale; open software for decentralized trials in rare
-    diseases; and what early-life development teaches about intelligence.
+    geometry of learned latent spaces in neural networks as a route to safer,
+    self-monitoring systems; weak supervision from clinical notes, EEG, and MRI
+    to build diagnostic tools at scale; open software for decentralized trials
+    in rare diseases; and what early-life development teaches about
+    intelligence.
 
 
 interests:
