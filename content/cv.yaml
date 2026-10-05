@@ -52,7 +52,7 @@ interests:
       properties of a representation mark the edge of that competence.  The next
       step is a introspective system, a system that models its own evolution
       through latent space. Such a system offers (1) the ability to evaluate its
-      own reliability; (2) the ability to predict what additional data is needed
+      own reliability and (2) the ability to predict what additional data is needed
       to improve competence (active learning).
 
   - title: "From charts and signals to clinical tools"
