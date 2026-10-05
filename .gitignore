@@ -1,0 +1,13 @@
+_site/
+__pycache__/
+.venv/
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# local only: Claude guidance, unrelated Node tool, drafts, old browser-printed PDFs
+CLAUDE.md
+node_modules/
+package-lock.json
+content/cv-too-much-future.yaml
+/*.pdf

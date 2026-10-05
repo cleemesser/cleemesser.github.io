@@ -1,0 +1,161 @@
+((# LaTeX version of index.html. Rendered by `python build.py --pdf`.
+   Jinja delimiters are changed so they do not clash with TeX braces:
+   blocks use double-paren-star, variables use triple parens, comments
+   use double-paren-hash (see build_pdf in build.py). Every variable is TeX-escaped unless a filter (md, authors) already
+   returned TeX. #))
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{tgpagella}
+\usepackage[top=1.6cm,bottom=1.8cm,right=1.9cm,left=4.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{ragged2e}
+% Never leave a single line of a paragraph or entry alone at the top or bottom of a page.
+\usepackage[defaultlines=2,all]{nowidow}
+\usepackage[pdfusetitle]{hyperref}
+\urlstyle{same}
+
+\definecolor{muted}{HTML}{4A525C}
+% Links stay clickable but take the color of the surrounding text.
+\hypersetup{hidelinks, pdftitle={((( cv.site.title )))}, pdfauthor={((( cv.person.name )))}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\RaggedRight
+% A page that ends early stays short instead of stretching the spacing.
+\raggedbottom
+
+% Width of the left column that holds dates. The text block starts at the
+% right edge of this column, so long ranges ("2012--2021") never wrap.
+\newlength{\gutter}\setlength{\gutter}{2.4cm}
+
+% Lists normally invite a page break just before their first item, which can
+% strand a heading at the bottom of a page. Forbid it, so every heading stays
+% with the first entry under it.
+\makeatletter
+\@beginparpenalty=\@M
+\makeatother
+
+\newcommand{\cvsection}[1]{%
+  \par\addvspace{1.1em}%
+  {\Large\itshape #1\par}\nopagebreak\vspace{0.4em}}
+\newcommand{\pubgroup}[1]{%
+  \par\addvspace{1em}%
+  {\itshape\color{muted}#1\par}\nopagebreak\vspace{0.3em}}
+
+% A list whose \item[label] hangs in the left margin, right-aligned
+% against the text block.
+\newenvironment{dated}{%
+  \list{}{%
+    \setlength{\leftmargin}{0pt}%
+    \setlength{\labelwidth}{\gutter}%
+    \setlength{\labelsep}{0pt}%
+    \setlength{\itemindent}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\itemsep}{0.55em}%
+    \renewcommand{\makelabel}[1]{\hfill{\color{muted}##1}\hspace{1em}}}}%
+  {\endlist}
+
+% Skills: bold area name in a fixed column, then the description.
+% Area names wrap between words, never with a hyphen.
+\newenvironment{skilllist}{%
+  \list{}{%
+    \setlength{\leftmargin}{9.5em}%
+    \setlength{\labelwidth}{8.5em}%
+    \setlength{\labelsep}{1em}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\itemsep}{0.35em}%
+    \renewcommand{\makelabel}[1]{\smash{\parbox[t]{\labelwidth}{\RaggedRight\hyphenpenalty=10000\bfseries ##1}}\hfill}}}%
+  {\endlist}
+
+\pagestyle{plain}
+
+\begin{document}
+
+{\fontsize{24}{28}\selectfont\bfseries ((( cv.person.name )))}%
+{\Large\color{muted}, ((( cv.person.postnominals )))}\par
+\vspace{0.3em}
+{\color{muted}((( cv.person.role )))}\par
+\vspace{0.4em}
+% One link per line: label in body text, URL faint. Both are clickable.
+{\small
+((* if cv.person.email *))
+\href{mailto:((( cv.person.email )))}{((( cv.person.email )))}\par
+((* endif *))
+((* for l in cv.person.links *))
+((* set short = l.url | print_url *))
+\href{((( l.url | url )))}{((( l.label )))}((* if short *))~{\color{muted}(\href{((( l.url | url )))}{((( short )))})}((* endif *))\par
+((* endfor *))
+}
+
+\vspace{1.2em}
+{\fontsize{11}{14.5}\selectfont ((( cv.summary | md )))\par}
+
+\cvsection{Research interests}
+((* for it in cv.interests *))
+\textbf{((( it.title )))}\par
+((( it.text | md )))\par
+((* if not loop.last *))\vspace{0.6em}((* endif *))
+
+((* endfor *))
+
+\cvsection{Skills}
+\begin{skilllist}
+((* for s in cv.skills *))
+\item[((( s.area )))] ((( s["items"] | md )))
+((* endfor *))
+\end{skilllist}
+
+\cvsection{Publications}
+((* for g in cv.publications *))
+((* set shown = g["items"] | rejectattr("placeholder") | list *))
+((* if shown *))
+\pubgroup{((( g.group )))}
+((* if g.note *)){\small\color{muted}((( g.note | md )))\par}\nopagebreak\vspace{0.3em}((* endif *))
+\begin{dated}
+((* for p in shown *))
+\item[((( p.year )))] \textbf{((( p.title ))).} ((( p.authors | authors ))). \emph{((( p.venue ))).}
+((*- if p.doi *)) \href{https://doi.org/((( p.doi | url )))}{((( ("https://doi.org/" ~ p.doi) | print_url("doi") )))}((* endif *))
+((*- if p.arxiv *)) \href{https://arxiv.org/abs/((( p.arxiv | url )))}{((( ("https://arxiv.org/abs/" ~ p.arxiv) | print_url("arXiv") )))}((* endif *))
+((*- if p.url *)) \href{((( p.url | url )))}{((( p.url | print_url("") )))}((* endif *))
+((*- if p.code *)) \href{((( p.code | url )))}{((( p.code | print_url("code") )))}((* endif *))
+
+((* if p.note *))\par{\small\color{muted}((( p.note | md )))}((* endif *))
+((* endfor *))
+\end{dated}
+((* endif *))
+((* endfor *))
+((* if cv.more_publications *))
+\vspace{0.5em}{\small\color{muted}((( cv.more_publications | md )))\par}
+((* endif *))
+
+\cvsection{Appointments}
+\begin{dated}
+((* for r in cv.positions *))
+\item[((( r.when )))] ((( r.what ))), {\color{muted}\mbox{((( r.where )))}}
+((* endfor *))
+\end{dated}
+
+\cvsection{Education and training}
+\begin{dated}
+((* for r in cv.education *))
+\item[((( r.when )))] ((( r.what ))), {\color{muted}\mbox{((( r.where )))}}
+((* endfor *))
+\end{dated}
+
+\cvsection{Honors and certifications}
+\begin{itemize}
+  \setlength{\itemsep}{0.2em}\setlength{\parsep}{0pt}
+((* for h in cv.honors *))
+  \item ((( h | md )))
+((* endfor *))
+\end{itemize}
+
+\vspace{2em}
+{\small\color{muted}Updated ((( cv.site.updated ))).}
+
+\end{document}

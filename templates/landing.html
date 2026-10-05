@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ cv.site.title }}</title>
+  <meta name="description" content="{{ cv.site.description }}">
+  <meta property="og:title" content="{{ cv.site.title }}">
+  <meta property="og:description" content="{{ cv.site.description }}">
+  <meta property="og:type" content="profile">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ root }}style.css">
+  <script type="application/ld+json">{{ json_ld }}</script>
+</head>
+<body>
+<main class="page">
+
+  {# The landing page deliberately has no link to the full CV at cv/. #}
+  <header class="masthead">
+    <h1><span class="name">{{ cv.person.name }}</span><span class="post">,</span> <span class="post">{{ cv.person.postnominals }}</span></h1>
+    <p class="role">{{ cv.person.role }}</p>
+    <ul class="links">
+      {% if cv.person.email %}<li><a href="mailto:{{ cv.person.email }}">{{ cv.person.email }}</a></li>{% endif %}
+      {% for l in cv.person.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+    </ul>
+  </header>
+
+  <section class="summary">
+    <p>{{ cv.landing.summary | md }}</p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl class="skills">
+      {% for s in cv.skills %}
+      <dt>{{ s.area }}</dt><dd>{{ s["items"] | md }}</dd>
+      {% endfor %}
+    </dl>
+  </section>
+
+  <footer class="foot">
+    <p>Updated {{ cv.site.updated }}.</p>
+  </footer>
+</main>
+</body>
+</html>
