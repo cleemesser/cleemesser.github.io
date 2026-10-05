@@ -140,7 +140,7 @@ education:
   - when: "2004"
     what: "MD"
     where: "Washington University School of Medicine"
-  - when: "2001"
+  - when: "2004"
     what: "PhD, Neuroscience (advisor: Rachel O. L. Wong)"
     where: "Washington University in St. Louis"
   - when: "1990"
