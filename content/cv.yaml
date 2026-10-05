@@ -8,7 +8,7 @@ site:
   title: "Christopher Lee-Messer, MD, PhD, FACNS"
   description: "Physician-scientist treating children with epilepsy and neurodevelopmental disorders and doing research on models for brain signals and the geometry of learned representations."
   url: "https://cleemesser.github.io"          # VERIFY: your GitHub Pages URL
-  updated: "September 2026"
+  updated: "October 2026"
 
 person:
   name: "Christopher Lee-Messer"
@@ -23,14 +23,13 @@ person:
     - { label: "GitHub", url: "https://github.com/cleemesser" }
 
 summary: >
-  Neurologist-scientist studying the science of intelligence and the pathology of abnormal brain dynamics. Trained in physics, developmental and computational neuroscience, molecular biology, optogenic gene therapies, and clinical neurophysiology. Basic research studying the topology and metric geometry of learned latent spaces to better understand how neural networks function. Finding a route to safer, more
+  Neurologist-scientist studying the science of intelligence and the pathology of abnormal brain dynamics. Trained in physics, developmental and computational neuroscience, molecular biology, optogenetics, viral-vectors, and clinical neurophysiology. Basic research studying the topology and metric geometry of learned latent spaces to better understand how neural networks function and to find a route to safer, more
   interpretable models. Applied work building large medical databases of EEG, charts and brain MRI in order to build machine learning models for medical diagnosis. I am interested in research roles and collaborations on world models and non-linguistic intelligence, particularly where they apply to real clinical data.
 
 # Landing page (site root). One short paragraph; the landing page does not link to the full CV.
 landing:
-  # VERIFY: draft condensed from `interests` below; rewrite in your own voice.
   summary: >
-    Neurologist-scientist working on the science of intelligence. How brains and
+    Neurologist-scientist working on the science of intelligence: how brains and
     neural networks learn model their world. My clinical research is focused on
     the neuroscience and pathology of the synapse.  My computational research
     covers models of EEG and other physiological signals; the topology and
@@ -49,11 +48,11 @@ interests:
       epilepsy. My lab is building dynamical systems models of the brain to
       diagnose epileptic brain circuits and identify areas for
       treatment. Predicting the system's future in latent representation space
-      is a natural testbed for joint-embedding predictive architectures; our
-      self-supervised EEG pre-training (ICLR 2022) has long used next-window
-      prediction as a pre-training objective evaluated in sensor space.  Current
-      work hypothesizes that embedded space architectures will be more efficient, as
-      they form non-linear sketches of the underlying dynamics that can surpass
+      is a natural testbed for joint-embedding predictive architectures. Since
+      2019, my lab has helped to pioneer self-supervised EEG pre-training with
+      next-window prediction in sensor space.  Current work hypothesizes that
+      embedded space architectures will be more efficient and that they will
+      form non-linear sketches of the underlying dynamics that can surpass
       linear-system approaches.
 
   - title: "Latent space geometry for safety, introspection, and self-modeling"
@@ -75,12 +74,12 @@ interests:
       Clinical workflow notes, reports, and EEG annotations are abundant. We
       hypothesized that they provide a rich source of training information as a
       noisy supervision signal.  My lab's work showed that one can use weak
-      supervision to train seizure detectors at scale. Combined with my expertise
-      at building pipelines for turning diverse sources of clinical data into
-      datasets suitable for machine learning, my lab wants to turn EEG, MRI, and
+      supervision to train seizure detectors at scale. Building on my expertise
+      creating pipelines that turn diverse sources of clinical data into
+      datasets suitable for machine learning, my lab aims to turn EEG, MRI, and
       medical charts into models clinicians and patients can rely on.
 
-  - title: "Modern Software Tools for Clinical Trials and Studies"
+  - title: "Modern software tools for clinical trials and studies"
     text: >
       Clinical trials tend to be expensive and cumbersome to implement. The
       traditional paradigm of patients coming to medical centers for all
@@ -89,25 +88,25 @@ interests:
       time and money, but for rare diseases or for repurposed or orphan drugs,
       these traditional trials are not feasible. With the decentralized clinical
       trial open platform (DCTOP) funded by the CureSyngap1 patient advocacy
-      organization, we are developing modern, open software tools which use the
+      organization, we are developing modern, open software tools that use the
       latest web and mobile technologies. These address the issues of data
       collection, replace many in-person visits with tele-visits, and facilitate
-      remote guidence and testing for investigators and participants and their
+      remote guidance and testing for investigators and participants and their
       caregivers. We anticipate that these tools will enable a broad range of
-      newer techniques like pre-trial simulation testing and adapative bayesian
-      protocols. Coupled with lowering costs, we anticipate benefit for patient
+      newer techniques like pre-trial simulation testing and adapative Bayesian
+      protocols. Combined with lowering costs, we expect these tools to benefit patient
       communities around the world.
 
   - title: "Neurodevelopment as a guide to the path to intelligence"
     text: >
       Before the eyes open, spontaneous retinal waves organize visual circuits
       through Hebbian learning. Activity-dependent development is a biological
-      precedent for pre-training on internally generated data. Young childen
+      precedent for pre-training on internally generated data. Young children
       acquire fundamental skills and knowledge before the acquisition of
       language. In many of the patients in my neurological practice, there is
       ongoing skill acquisition in motor, cognitive, and social domains in the
-      absence of language. Patients with aphasia due to stroke or epileptic
-      encephalopathies like Landau-Kleffner syndrome show rich problem solving
+      absence of language. Patients with acute loss of language (aphasia) due to stroke or epileptic
+      encephalopathies like Landau-Kleffner syndrome show rich problem-solving
       abilities. Neurodevelopment continues to be a rich source of ideas with
       respect to how intelligence arises with and without language.
 
@@ -115,17 +114,17 @@ skills:
   - area: "Machine learning"
     items: "Self-supervised and predictive representation learning; graph neural networks; structured state-space models; weak supervision and data programming; out-of-distribution detection and model monitoring; Bayesian modeling."
   - area: "Mathematics"
-    items: "Signal processing; Tensor calculus; Differential geometry; Lie theory; geometric and multilinear algebra; dynamical systems; Bayesian probability and statistics."
+    items: "Signal processing; tensor calculus; differential geometry; Lie theory; geometric and multilinear algebra; dynamical systems; Bayesian probability and statistics."
   - area: "Neural data"
     items: "Clinical EEG and long-term monitoring (board-certified in epilepsy); EEG source modeling; MRI and NIfTI pipelines; BIDS data standards (iEEG-BIDS co-author)."
   - area: "Clinical domain"
     items: "Pediatric epilepsy and developmental and epileptic encephalopathies, synaptopathies including SYNGAP1-related disorder and DEE-SWAS; EEG and sleep biomarkers; clinical trial and outcome-measure design."
   - area: "Experimental neuroscience"
-    items: "In vivo and in vitro electrophysiology, molecular biology, optogenics, and developmental neuroscience with a focus on activity-dependent development."
+    items: "In vivo and in vitro electrophysiology, molecular biology, optogenetics, and developmental neuroscience with a focus on activity-dependent development."
   - area: "Software"
     items: "Python scientific and deep learning stack; research tooling for EEG/MRI data, chart review, harmonization. Creator of long-running clinical web sites and mobile apps."
   - area: Programming
-    items: "Python (e.g., pytorch, jax, tensorly, numpy, polars, duckdb), C, C++. Acquaintance with: R, Rust, javascript, Lean4, Lisp, Mojo, CUDA. Past experiences:  Mathematica, Matlab, Theano, Ocaml, haskall, 6502 and x86 assembly, PARIS (Connection Machine)"
+    items: "Python (e.g., PyTorch, JAX, TensorLy, NumPy, Polars, DuckDB), C, C++. Acquaintance with: R, Rust, JavaScript, Lean4, Lisp, Mojo, CUDA. Past experience: Mathematica, Matlab, Theano, OCaml, Haskell, 6502 and x86 assembly, PARIS (Connection Machine)"
 
 positions:
   - when: "Present"
