@@ -164,8 +164,11 @@ education:
     what: "PhD, Neuroscience (advisor: Rachel O. L. Wong)"
     where: "Washington University in St. Louis"
   - when: "1990"
-    what: "AB, Physics"
+    what: "AB, Physics (advisor: Alan Yuille, Harvard Robotics Lab)"
     where: "Harvard University"
+  - when: "1989"
+    what: "Summer research internship, laboratory of David Rumelhart"
+    where: "Stanford University"
 
 honors:
   - "CureSyngap1 research award, *An open-label, decentralized trial of nortriptyline for SYNGAP1-related disorder* (PI, 2026–2027)"
