@@ -22,6 +22,9 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \RaggedRight
+% When no line break fits ragged2e's limits (for example, a long institution
+% name kept on one line), end the line short instead of overflowing the margin.
+\setlength{\emergencystretch}{3em}
 % A page that ends early stays short instead of stretching the spacing.
 \raggedbottom
 
@@ -136,14 +139,14 @@
 \cvsection{Appointments}
 \begin{dated}
 ((* for r in cv.positions *))
-\item[((( r.when )))] ((( r.what | md ))), {\color{muted}\mbox{((( r.where )))}}
+\item[((( r.when )))] ((( r.what | md ))), {\color{muted}((( r.where | nohyphen )))}
 ((* endfor *))
 \end{dated}
 
 \cvsection{Education and training}
 \begin{dated}
 ((* for r in cv.education *))
-\item[((( r.when )))] ((( r.what | md ))), {\color{muted}\mbox{((( r.where )))}}
+\item[((( r.when )))] ((( r.what | md ))), {\color{muted}((( r.where | nohyphen )))}
 ((* endfor *))
 \end{dated}
 

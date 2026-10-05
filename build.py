@@ -74,6 +74,11 @@ def tex_escape(text) -> str:
     return "".join(TEX_SPECIAL.get(c, c) for c in str(text))
 
 
+def tex_nohyphen(text) -> TexStr:
+    """Text that may wrap between words but never hyphenates inside one."""
+    return TexStr(" ".join(rf"\mbox{{{tex_escape(w)}}}" for w in str(text).split()))
+
+
 def tex_url(url: str) -> TexStr:
     """Escape only what breaks a URL argument to \\href or \\nolinkurl."""
     return TexStr(str(url).replace("\\", "/").replace("%", r"\%").replace("#", r"\#"))
@@ -241,6 +246,7 @@ def build_pdf() -> None:
     env.filters["md"] = md_tex
     env.filters["url"] = tex_url
     env.filters["print_url"] = print_url
+    env.filters["nohyphen"] = tex_nohyphen
     env.filters["authors"] = lambda a: author_list_tex(a, cv.get("me", []))
 
     job = Path(PDF_NAME).stem
