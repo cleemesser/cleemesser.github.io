@@ -47,40 +47,61 @@ interests:
       idenification of errors as they propagated through a neural network.
       trusted on. This structure provides a readable signal of the model's own
       competence. Current work asks which topological, geometric, and dynamical
-      properties of a representation (metric, curvature, information geometry,
-      trajectories through latent space) mark the edge of that competence, and
-      how to measure them in deployment. The same measurements are a route to
-      introspection: they show what a network represents and how that structure
-      changes as it learns and runs. The next step is a self-introspective
-      system, in which one part of a model takes another part's latent space as
-      its input and learns to predict it.
+      properties of a representation mark the edge of that competence.  We
+      believe the next step is a introspective system. Latent space monitoring
+      will be a crucial element in the system monitoring its own reliability and
+      in active learning.
+
+  - title: "From charts and signals to clinical tools"
+    text: >
+      Clinical workflow notes, reports, and EEG annotations are abundant. We
+      hypothesized that they provide a rich source of training information as a
+      noisy supervision signal.  In our recent work, we showed that you can use
+      weak supervision to train seizure detectors at scale. Combined with our
+      work at building pipelines for turning diverse sources of clinical data in
+      to datasets suitable for machine learning. We want to turn EEG, MRI, and
+      the medical record into models clinicians and patients can rely on.
+
+  - title: "Modern Software Tools for Clinical Trials and Studies"
+    text: >
+      Clinical Trials in tend to be expensive and cumbersome to implement. The
+      traditional paradigm of patients coming coming to medical centers for all
+      their care limits access for many potential enrollees. For diseases with
+      large markets, these obstacles can be partially overcome with sufficient
+      time and money, but for rare diseases or for repurposed or orphan drugs,
+      these traditional trials are not feasible. With the decentralized clinical
+      trial open platform (DCTOP) funded by the CureSyngap1 patient advocacy
+      organization, we are developing  modern, open software tools which
+      use the latest web and mobile technologies. These address the issues of
+      data collection, replace many in-person visits with tele-visits, and
+      facilitate remote guidence and testing for investigators and participants and
+      their caregivers. We anticipate that these tools will enable much less
+      expensive trials, and enable a broad range of newer techniques like
+      adapative, bayesian trials at a much lower cost in order to benefit
+      patient communities everwhere.
+
   - title: "Neurodevelopment as inductive bias"
     text: >
       Before the eyes open, spontaneous retinal waves organize visual circuits through
       Hebbian learning. Activity-dependent development is a biological precedent for
       self-supervised pre-training on internally generated data, and a source of ideas
       for how intelligence arises without language.
-  - title: "From charts and signals to clinical tools"
-    text: >
-      Clinical workflow notes, reports, and EEG annotations are abundant, noisy supervision.
-      I have used weak supervision to train seizure detectors at scale, and I want to turn
-      EEG, MRI, and the medical record into models clinicians and patients can rely on.
 
 skills:
   - area: "Machine learning"
     items: "Self-supervised and predictive representation learning; graph neural networks; structured state-space models; weak supervision and data programming; out-of-distribution detection and model monitoring; Bayesian modeling."
   - area: "Mathematics"
-    items: "Differential geometry, Lie theory, geometric and multilinear algebra; information geometry; probability and statistics. Undergraduate training in physics."
+    items: "Differential geometry, Lie theory, geometric and multilinear algebra; dynamical systems; probability and statistics. Signal processing."
   - area: "Neural data"
     items: "Clinical EEG and long-term monitoring (board-certified in epilepsy); EEG source modeling; MRI and NIfTI pipelines; BIDS data standards (iEEG-BIDS co-author)."
   - area: "Clinical domain"
     items: "Pediatric epilepsy and developmental and epileptic encephalopathies, including SYNGAP1-related disorder and DEE-SWAS; sleep spindle biomarkers; clinical trial and outcome-measure design."
   - area: "Experimental neuroscience"
-    items: "In vivo and in vitro electrophysiology, molecular biology, and developmental neuroscience with a focus on activity-dependent development."
+    items: "In vivo and in vitro electrophysiology, molecular biology, optogenics, and developmental neuroscience with a focus on activity-dependent development."
   - area: "Software"
     items: "Python scientific and deep learning stack; research tooling for EEG/MRI data, chart review, harmonization. Creator of long-running clinical web sites and mobile apps."
   - area: Programming
-    items: "Python (e.g., pytorch,jax, tensorly,numpy,polars,duckdb), C, C++. Acquaitance with: R, Rust, javascript, Lean4, Lisp, Mojo, CUDA. Past experiences:  Mathematica, Matlab, Theano, Ocaml, haskall, 6502 and x86 assembly, PARIS (Connection Machine)"
+    items: "Python (e.g., pytorch, jax, tensorly, numpy, polars, duckdb), C, C++. Acquaitance with: R, Rust, javascript, Lean4, Lisp, Mojo, CUDA. Past experiences:  Mathematica, Matlab, Theano, Ocaml, haskall, 6502 and x86 assembly, PARIS (Connection Machine)"
 
 positions:
   - when: "Present"
@@ -130,18 +151,6 @@ me: ["Lee-Messer C", "Lee-Messer CW", "Lee CW"]
 
 publications:
   - group: "Current work"
-    items:
-      - title: "Latent-space topology, geometry, and dynamics: from competence monitoring to self-introspection"
-        authors: ["Lee-Messer C"]
-        venue: "in development"
-        year: 2026
-        note: >
-          TRUST-LAPSE (Bhaskhar, 2024) used distances in latent space to flag
-          inputs a model should not be trusted on. This work extends that idea
-          from competence monitoring to model introspection, and then to
-          self-introspective systems: one part of a model takes another part's
-          latent space as its input and learns to predict it, in the manner of a
-          JEPA-style world model.
       - title: "DCTOP: a decentralized clinical trial open platform for rare pediatric neurological disorders"
         authors: ["Lee-Messer C"]
         venue: "Platform in development"
