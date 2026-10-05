@@ -73,6 +73,23 @@ def tex_url(url: str) -> TexStr:
     return TexStr(str(url).replace("\\", "/").replace("%", r"\%").replace("#", r"\#"))
 
 
+# Printed URLs longer than this are left out; a bracketed label is printed instead.
+PRINT_URL_MAX = 60
+
+
+def print_url(url: str, kind: str | None = None) -> TexStr:
+    """A URL as a reader could type it from paper: no scheme, no "www.", no
+    trailing slash, with line breaks allowed only after "/".
+    When the result is longer than PRINT_URL_MAX, return "[<kind> link]"
+    (or "[link]"), or "" when kind is None so the caller can omit it."""
+    s = re.sub(r"^https?://(www\.)?", "", str(url)).rstrip("/")
+    if len(s) > PRINT_URL_MAX:
+        if kind is None:
+            return TexStr("")
+        return TexStr(tex_escape(f"[{kind} link]" if kind else "[link]"))
+    return TexStr(tex_escape(s).replace("/", r"/\allowbreak{}"))
+
+
 def _emph_tex(text: str) -> str:
     s = tex_escape(text)
     s = re.sub(r"\*\*(.+?)\*\*", r"\\textbf{\1}", s)
@@ -210,6 +227,7 @@ def build_pdf() -> None:
     )
     env.filters["md"] = md_tex
     env.filters["url"] = tex_url
+    env.filters["print_url"] = print_url
     env.filters["authors"] = lambda a: author_list_tex(a, cv.get("me", []))
 
     tex = OUT / "cv.tex"
