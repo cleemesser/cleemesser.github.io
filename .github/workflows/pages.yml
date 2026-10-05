@@ -25,12 +25,12 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       # pdflatex for the CV PDF; latex-extra provides nowidow and ragged2e,
-      # fonts-recommended provides TeX Gyre Pagella.
+      # tex-gyre provides tgpagella.sty (only a Recommends of fonts-recommended).
       - run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             texlive-latex-base texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended
+            texlive-fonts-recommended tex-gyre
       - run: python build.py
       - uses: actions/upload-pages-artifact@v3
         with:
