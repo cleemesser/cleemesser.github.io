@@ -101,7 +101,7 @@ skills:
   - area: "Machine learning"
     items: "Self-supervised and predictive representation learning; graph neural networks; structured state-space models; weak supervision and data programming; out-of-distribution detection and model monitoring; Bayesian modeling."
   - area: "Mathematics"
-    items: "Differential geometry, Lie theory, geometric and multilinear algebra; dynamical systems; probability and statistics. Signal processing."
+    items: "Signal processing. Tensor calculus. Differential geometry, Lie theory, geometric and multilinear algebra; dynamical systems; Bayesian probability and statistics."
   - area: "Neural data"
     items: "Clinical EEG and long-term monitoring (board-certified in epilepsy); EEG source modeling; MRI and NIfTI pipelines; BIDS data standards (iEEG-BIDS co-author)."
   - area: "Clinical domain"
