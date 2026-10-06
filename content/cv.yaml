@@ -154,6 +154,9 @@ education:
   - when: "2011"
     what: "Fellowships in Clinical Neurophysiology and Pediatric Epilepsy"
     where: "Stanford University Medical Center"
+  - when: "2009–2011"
+    what: "Postdoctoral research in optogenetics, laboratory of Karl Deisseroth, Bioengineering and Psychiatry (NIH/NINDS K12)"
+    where: "Stanford University"
   - when: "2009"
     what: "Residency in Neurology (Child Neurology); Chief Resident 2007–2008"
     where: "Stanford University Medical Center"
@@ -271,6 +274,11 @@ publications:
 
   - group: "Computational and developmental neuroscience"
     items:
+      - title: "Optogenetic stimulation of neural grafts enhances neurotransmission and downregulates the inflammatory response in experimental stroke model"
+        authors: ["Daadi MM", "Klausner JQ", "Bajar B", "Goshen I", "Lee-Messer C", "Lee SY", "Winge MC", "Ramakrishnan C", "Lo M", "Sun G", "Deisseroth K", "Steinberg GK"]
+        venue: "Cell Transplantation 25(7):1371–1380"
+        year: 2016
+        doi: "10.3727/096368915X688533"
       - title: "MicroRNA-mediated conversion of human fibroblasts to neurons"
         authors: ["Yoo AS", "Sun AX", "Li L", "Shcheglovitov A", "Portmann T", "Li Y", "Lee-Messer C", "Dolmetsch RE", "Tsien RW", "Crabtree GR"]
         venue: "Nature 476:228–231"
